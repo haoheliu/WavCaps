@@ -31,8 +31,8 @@ def _load_json_file(files, blacklist=None):
                     elif ("AudioSet" in file or "AudioCaps" in file) and blacklist is not None:
                         if item["id"] in blacklist["AudioSet"]:
                             continue
-                    temp_dict = {"audio": item["audio"], "caption": item["caption"], "id": audio_id,
-                                 "duration": item["duration"]}
+                        temp_dict = {"audio": item["audio"], "caption": item["caption"], "id": audio_id,
+                                    "duration": item["duration"]}
                     json_data.append(temp_dict)
                     audio_id += 1
             else:
@@ -65,23 +65,27 @@ class AudioLanguagePretrainDataset(Dataset):
         return len(self.json_data)
 
     def __getitem__(self, index):
+        while True:
+            try:
+                item = self.json_data[index]
+                wav_path = item["audio"]
+                # duration = item["duration"]
+                waveform, _ = librosa.load(wav_path, sr=self.sr, mono=True)
 
-        item = self.json_data[index]
-        wav_path = item["audio"]
-        # duration = item["duration"]
-        waveform, _ = librosa.load(wav_path, sr=self.sr, mono=True)
+                if self.max_length != 0:
+                    # if audio length is longer than max_length, we randomly crop it to mac length
+                    if waveform.shape[-1] > self.max_length:
+                        max_start = waveform.shape[-1] - self.max_length
+                        start = random.randint(0, max_start)
+                        waveform = waveform[start: start + self.max_length]
 
-        if self.max_length != 0:
-            # if audio length is longer than max_length, we randomly crop it to mac length
-            if waveform.shape[-1] > self.max_length:
-                max_start = waveform.shape[-1] - self.max_length
-                start = random.randint(0, max_start)
-                waveform = waveform[start: start + self.max_length]
+                caption = text_preprocess(item["caption"])
+                audio_id = item["id"]
 
-        caption = text_preprocess(item["caption"])
-        audio_id = item["id"]
-
-        return torch.tensor(waveform), caption, audio_id
+                return torch.tensor(waveform), caption, audio_id
+            except Exception as e:
+                print(e)
+                index = random.randint(0, len(self.json_data) - 1)
         # return duration, caption, audio_id
 
 

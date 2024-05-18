@@ -1,0 +1,52 @@
+device: "cuda"
+seed: 20
+embed_size: 1024
+temp: 0.07
+json_files: ['/mnt/bn/lqhaoheliu/project/WavCaps/retrieval/data/Clotho/json_files/train.json', '/mnt/bn/lqhaoheliu/project/WavCaps/retrieval/data/AudioCaps/json_files/train.json']
+resume: false
+blacklist: null
+embed_regularization: true
+
+dist_args:
+  world_size: 1
+
+audio_args:
+  sr: 32000
+  n_fft: 1024
+  hop_length: 320
+  f_min: 50
+  f_max: 14000
+  n_mels: 64
+  max_length: 30
+  mono: True
+
+
+audio_encoder_args:
+  type: "transformer"
+  pretrained: True
+  freeze: False
+
+data_args:
+  batch_size: 128
+  num_workers: 8
+
+text_encoder_args:
+  type: 'bert-base-uncased'
+  freeze: False
+
+
+optim_args:
+  lr: !!float 5e-5
+  warmup_steps: 2000
+  optimizer_name: "adam"
+  betas: [0.9, 0.999]
+  eps: !!float 1e-8
+  momentum: 0.9
+  warmup_epochs: 2
+
+
+training:
+  spec_augmentation: True
+  epochs: 20
+  clip_grad: 2
+  dropout: 0.2

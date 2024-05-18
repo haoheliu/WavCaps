@@ -9,7 +9,8 @@ from pprint import PrettyPrinter
 import wandb
 import torch
 import argparse
-import ruamel.yaml as yaml
+import yaml
+
 from tqdm import tqdm
 from loguru import logger
 from data_handling.datamodule import AudioCaptionDataModule
@@ -78,7 +79,7 @@ def main():
                         help="Model type.")
     parser.add_argument("-m", "--model", default="Cnn14", type=str,
                         help="Model name.")
-    parser.add_argument("-a", "--max_length", default=30, type=int,
+    parser.add_argument("-a", "--max_length", default=128, type=int,
                         help="Max length.")
     parser.add_argument("-s", "--batch_size", default=128, type=int,
                         help="Batch size.")
@@ -88,14 +89,13 @@ def main():
 
     exp_name = args.exp_name
 
-    with open(args.config, "r") as f:
-        config = yaml.safe_load(f)
+    config = yaml.load(open(args.config, "r"), Loader=yaml.FullLoader)
 
     config["audio_encoder_args"]["type"] = args.model_type
     config["audio_encoder_args"]["model"] = args.model
     config["audio_args"]["max_length"] = args.max_length
     config["optim_args"]["lr"] = args.lr
-    config["blacklist"] += args.blacklist
+    # config["blacklist"] += args.blacklist
     config["data_args"]["batch_size"] = args.batch_size
 
     # setup distribution mode
@@ -116,7 +116,7 @@ def main():
 
     # create pretrain dataloader
     dataloader = pretrain_dataloader(config,
-                                     bucket=True,
+                                     bucket=False,
                                      bucket_boundaries=(5, 30, 6),
                                      is_distributed=is_dist_avail_and_initialized(),
                                      num_tasks=get_world_size(),

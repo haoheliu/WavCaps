@@ -10,7 +10,7 @@ import wandb
 import numpy as np
 import torch
 import argparse
-import ruamel.yaml as yaml
+import yaml
 from tqdm import tqdm
 from loguru import logger
 from data_handling.datamodule import AudioCaptionDataModule
@@ -90,8 +90,7 @@ def main():
 
     exp_name = args.exp_name
 
-    with open(args.config, "r") as f:
-        config = yaml.safe_load(f)
+    config = yaml.load(open(args.config, "r"), Loader=yaml.FullLoader)
 
     config["audio_encoder_args"]["type"] = args.model_type
     config["audio_encoder_args"]["model"] = args.model
@@ -200,19 +199,20 @@ def main():
         if is_dist_avail_and_initialized():
             dist.barrier()
             torch.cuda.empty_cache()
-
-        # validate on AC and Clotho
-        metrics = validate(model, val_loader, device)
-        log_results(metrics, config['data_args']['dataset'], main_logger, test=False)
-        recall_stats.append(metrics["t2a"][0] + metrics["a2t"][0])
-        if recall_stats[-1] >= max(recall_stats) and is_main_process():
-            sav_obj = {
-                "model": model_without_ddp.state_dict(),
-                "optimizer": optimizer.state_dict(),
-                "config": config,
-                "epoch": epoch
-            }
-            torch.save(sav_obj, str(model_output_dir) + "/recall_best_model.pt")
+            
+        if epoch % 10 == 0 and epoch > 5:
+            # validate on AC and Clotho
+            metrics = validate(model, val_loader, device)
+            log_results(metrics, config['data_args']['dataset'], main_logger, test=False)
+            recall_stats.append(metrics["t2a"][0] + metrics["a2t"][0])
+            if recall_stats[-1] >= max(recall_stats) and is_main_process():
+                sav_obj = {
+                    "model": model_without_ddp.state_dict(),
+                    "optimizer": optimizer.state_dict(),
+                    "config": config,
+                    "epoch": epoch
+                }
+                torch.save(sav_obj, str(model_output_dir) + "/recall_best_model.pt")
 
     main_logger.info('Evaluation start...')
     test_loader = datamodule.test_dataloader()

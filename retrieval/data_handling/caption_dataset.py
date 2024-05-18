@@ -11,9 +11,7 @@ import librosa
 from torch.utils.data import Dataset
 from data_handling.text_transform import text_preprocess
 
-
 class AudioCaptionDataset(Dataset):
-
     def __init__(self, audio_config, dataset, split):
         super().__init__()
         self.dataset = dataset
@@ -45,20 +43,25 @@ class AudioCaptionDataset(Dataset):
         return len(self.captions)
 
     def __getitem__(self, index):
-        audio_id = index // self.num_captions_per_audio
-        audio_name = self.wav_paths[index].split("/")[-1]
-        wav_path = self.wav_paths[index]
+        while True:
+            try:
+                audio_id = index // self.num_captions_per_audio
+                audio_name = self.wav_paths[index].split("/")[-1]
+                wav_path = self.wav_paths[index]
 
-        waveform, _ = librosa.load(wav_path, sr=self.sr, mono=True)
+                waveform, _ = librosa.load(wav_path, sr=self.sr, mono=True)
 
-        if self.max_length != 0:
-            # if audio length is longer than max_length, we random crop it
-            if waveform.shape[-1] > self.max_length:
-                max_start = waveform.shape[-1] - self.max_length
-                start = random.randint(0, max_start)
-                waveform = waveform[start: start + self.max_length]
+                if self.max_length != 0:
+                    # if audio length is longer than max_length, we random crop it
+                    if waveform.shape[-1] > self.max_length:
+                        max_start = waveform.shape[-1] - self.max_length
+                        start = random.randint(0, max_start)
+                        waveform = waveform[start: start + self.max_length]
 
-        caption = text_preprocess(self.captions[index])
+                caption = text_preprocess(self.captions[index])
 
-        return torch.tensor(waveform), caption, audio_id
+                return torch.tensor(waveform), caption, audio_id
+            except Exception as e:
+                print(e)
+                index = random.randint(0, len(self.captions) - 1)
 

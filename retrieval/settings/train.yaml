@@ -3,7 +3,7 @@ seed: 20
 embed_size: 1024
 temp: 0.07
 resume: false
-pretrain: true
+pretrain: false
 pretrain_path: 'outputs/pretrain/audio_classification/HTSAT_reg_lr_5e-05_seed_20/models/clotho_best_model.pt'
 embed_regularization: true
 
@@ -27,12 +27,10 @@ audio_encoder_args:
   pretrained: True
   freeze: False
 
-
 data_args:
   dataset: "Clotho"
   batch_size: 128
   num_workers: 8
-
 
 text_encoder_args:
   type: 'bert-base-uncased'
@@ -46,11 +44,11 @@ optim_args:
   betas: [0.9, 0.999]
   eps: !!float 1e-8
   momentum: 0.9
-  warmup_epochs: 0
+  warmup_epochs: 5
 
 
 training:
   spec_augmentation: True
-  epochs: 20
+  epochs: 50
   clip_grad: 2
   dropout: 0.2
