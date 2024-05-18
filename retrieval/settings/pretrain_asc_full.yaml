@@ -21,7 +21,6 @@ audio_args:
   max_length: 10
   mono: True
 
-
 audio_encoder_args:
   type: "transformer"
   pretrained: True

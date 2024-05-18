@@ -30,6 +30,13 @@ from tools.utils import (
     AverageMeter, t2a, a2t, set_logger, log_results,
 )
 
+import os
+
+os.environ["HF_HOME"] = "/mnt/bn/lqhaoheliu/home_cache/huggingface"
+os.environ["TORCH_HOME"] = "/mnt/bn/lqhaoheliu/home_cache/torch"
+os.environ["TOKENIZERS_PARALLELISM"]="true"
+
+wandb.login(key = "f91003cb3a038eeab803a8224311a8ca7d47d2dd")
 
 def train(model, dataloader, optimizer, scheduler, device, epoch):
     model.train()

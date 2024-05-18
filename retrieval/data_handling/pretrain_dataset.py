@@ -28,9 +28,10 @@ def _load_json_file(files, blacklist=None):
                     if "FreeSound" in file and blacklist is not None:
                         if item["id"] in blacklist["FreeSound"]:
                             continue
-                    elif ("AudioSet" in file or "AudioCaps" in file) and blacklist is not None:
-                        if item["id"] in blacklist["AudioSet"]:
-                            continue
+                    # elif ("AudioSet" in file or "AudioCaps" in file) and blacklist is not None:
+                    else:
+                        # if item["id"] in blacklist["AudioSet"]:
+                        #     continue
                         temp_dict = {"audio": item["audio"], "caption": item["caption"], "id": audio_id,
                                     "duration": item["duration"]}
                     json_data.append(temp_dict)
