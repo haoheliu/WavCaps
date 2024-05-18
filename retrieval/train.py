@@ -75,16 +75,16 @@ def main():
                         help="Setting files")
     parser.add_argument("-n", "--exp_name", default="exp_name", type=str,
                         help="name of this experiment.")
-    parser.add_argument("-l", "--lr", default=5e-5, type=float,
-                        help="Learning rate.")
-    parser.add_argument("-t", "--model_type", default="cnn", type=str,
-                        help="Model type.")
-    parser.add_argument("-m", "--model", default="Cnn14", type=str,
-                        help="Model name.")
-    parser.add_argument("-a", "--max_length", default=30, type=int,
-                        help="Max length.")
-    parser.add_argument("-d", "--dataset", default="AudioCaps", type=str,
-                        help="Dataset.")
+    # parser.add_argument("-l", "--lr", default=5e-5, type=float,
+    #                     help="Learning rate.")
+    # parser.add_argument("-t", "--model_type", default="cnn", type=str,
+    #                     help="Model type.")
+    # parser.add_argument("-m", "--model", default="Cnn14", type=str,
+    #                     help="Model name.")
+    # parser.add_argument("-a", "--max_length", default=30, type=int,
+    #                     help="Max length.")
+    # parser.add_argument("-d", "--dataset", default="AudioCaps", type=str,
+    #                     help="Dataset.")
 
     args = parser.parse_args()
 
@@ -92,9 +92,9 @@ def main():
 
     config = yaml.load(open(args.config, "r"), Loader=yaml.FullLoader)
 
-    config["audio_encoder_args"]["type"] = args.model_type
-    config["audio_encoder_args"]["model"] = args.model
-    config["audio_args"]["max_length"] = args.max_length
+    # config["audio_encoder_args"]["type"] = args.model_type
+    # config["audio_encoder_args"]["model"] = args.model
+    # config["audio_args"]["max_length"] = args.max_length
 
     # setup distribution mode
     init_distributed_mode(config["dist_args"])
@@ -104,9 +104,9 @@ def main():
     seed = config["seed"] + get_rank()
     setup_seed(seed)
 
-    config["optim_args"]["lr"] = args.lr
-    config["data_args"]["dataset"] = args.dataset
-    exp_name = exp_name + f"_{args.dataset}_lr_{args.lr}_seed_{seed}"
+    lr_value = config["optim_args"]["lr"]
+    dataset_name = config["data_args"]["dataset"]
+    exp_name = exp_name + f"_{dataset_name}_lr_{lr_value}_seed_{seed}"
 
     wandb.init(
         project="AT-retrieval",

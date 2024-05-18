@@ -56,10 +56,12 @@ class AudioLanguagePretrainDataset(Dataset):
         self.lengths = [item["duration"] for item in self.json_data]
 
         self.sr = audio_config["sr"]
+        
         if audio_config["max_length"] != 0:
             self.max_length = audio_config["max_length"] * self.sr
         else:
             self.max_length = 0
+        print("Max length", self.max_length)
 
     def __len__(self):
         return len(self.json_data)

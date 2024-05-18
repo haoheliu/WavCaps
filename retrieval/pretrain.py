@@ -73,30 +73,18 @@ def main():
                         help="Setting files")
     parser.add_argument("-n", "--exp_name", default="exp_name", type=str,
                         help="name of this experiment.")
-    parser.add_argument("-l", "--lr", default=5e-5, type=float,
-                        help="Learning rate.")
-    parser.add_argument("-t", "--model_type", default="cnn", type=str,
-                        help="Model type.")
-    parser.add_argument("-m", "--model", default="Cnn14", type=str,
-                        help="Model name.")
-    parser.add_argument("-a", "--max_length", default=128, type=int,
-                        help="Max length.")
-    parser.add_argument("-s", "--batch_size", default=128, type=int,
-                        help="Batch size.")
-    parser.add_argument("-b", "--blacklist", default='blacklist_exclude_ub8k_esc50_vggsound.json', type=str,
-                        help="Blacklist file.")
     args = parser.parse_args()
 
     exp_name = args.exp_name
 
     config = yaml.load(open(args.config, "r"), Loader=yaml.FullLoader)
 
-    config["audio_encoder_args"]["type"] = args.model_type
-    config["audio_encoder_args"]["model"] = args.model
-    config["audio_args"]["max_length"] = args.max_length
-    config["optim_args"]["lr"] = args.lr
+    # config["audio_encoder_args"]["type"] = args.model_type
+    # config["audio_encoder_args"]["model"] = args.model
+    # config["audio_args"]["max_length"] = args.max_length
+    # config["optim_args"]["lr"] = args.lr
     # config["blacklist"] += args.blacklist
-    config["data_args"]["batch_size"] = args.batch_size
+    # config["data_args"]["batch_size"] = args.batch_size
 
     # setup distribution mode
     init_distributed_mode(config["dist_args"])
@@ -106,7 +94,8 @@ def main():
     seed = config["seed"] + get_rank()
     setup_seed(seed)
 
-    exp_name = exp_name + f"_lr_{args.lr}_seed_{seed}"
+    learning_rate = config["optim_args"]["lr"]
+    exp_name = exp_name + f"_lr_{learning_rate}_seed_{seed}"
 
     wandb.init(
         project="AT-retrieval",
