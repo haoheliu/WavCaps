@@ -1,0 +1,1 @@
+{"text": ["The sound of the snoring"], "tag": ["snoring"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-53444-A-28.wav", "fold": 1, "target": 28, "category": "snoring", "esc10": false, "src_file": 53444, "take": "A"}}

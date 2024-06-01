@@ -17,6 +17,13 @@ from data_handling.datamodule import AudioCaptionDataModule
 from data_handling.pretrain_dataset import pretrain_dataloader
 from models.ase_model import ASE
 import torch.distributed as dist
+import os
+import random
+
+os.environ["HF_HOME"] = "/mnt/bn/lqhaoheliu/home_cache/huggingface"
+os.environ["TORCH_HOME"] = "/mnt/bn/lqhaoheliu/home_cache/torch"
+os.environ["TOKENIZERS_PARALLELISM"]="true"
+
 
 from pretrain import validate
 from tools.optim_utils import get_optimizer, cosine_lr
@@ -123,7 +130,7 @@ def main():
 
     # load evaluation datamodule
 
-    datamodule = AudioCaptionDataModule(config, args.dataset)
+    datamodule = AudioCaptionDataModule(config, dataset_name)
 
     dataloader = datamodule.train_dataloader()
     val_loader = datamodule.val_dataloader()

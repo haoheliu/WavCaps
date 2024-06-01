@@ -1,0 +1,1 @@
+{"text": ["The sound of the clock tick"], "tag": ["clock tick"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-62849-A-38.wav", "fold": 1, "target": 38, "category": "clock tick", "esc10": true, "src_file": 62849, "take": "A"}}

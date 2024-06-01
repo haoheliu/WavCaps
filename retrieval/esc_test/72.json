@@ -1,0 +1,1 @@
+{"text": ["The sound of the coughing"], "tag": ["coughing"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-19111-A-24.wav", "fold": 1, "target": 24, "category": "coughing", "esc10": false, "src_file": 19111, "take": "A"}}

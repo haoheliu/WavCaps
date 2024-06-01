@@ -1,0 +1,1 @@
+{"text": ["The sound of the frog"], "tag": ["frog"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-15689-A-4.wav", "fold": 1, "target": 4, "category": "frog", "esc10": false, "src_file": 15689, "take": "A"}}

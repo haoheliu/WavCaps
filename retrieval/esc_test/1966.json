@@ -1,0 +1,1 @@
+{"text": ["The sound of the fireworks"], "tag": ["fireworks"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-115545-B-48.wav", "fold": 1, "target": 48, "category": "fireworks", "esc10": false, "src_file": 115545, "take": "B"}}

@@ -1,0 +1,1 @@
+{"text": ["The sound of the mouse click"], "tag": ["mouse click"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-85123-A-31.wav", "fold": 1, "target": 31, "category": "mouse click", "esc10": false, "src_file": 85123, "take": "A"}}

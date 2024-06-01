@@ -1,0 +1,1 @@
+{"text": ["The sound of the insects"], "tag": ["insects"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-73585-A-7.wav", "fold": 1, "target": 7, "category": "insects", "esc10": false, "src_file": 73585, "take": "A"}}

@@ -1,0 +1,1 @@
+{"text": ["The sound of the crying baby"], "tag": ["crying baby"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-60997-B-20.wav", "fold": 1, "target": 20, "category": "crying baby", "esc10": true, "src_file": 60997, "take": "B"}}

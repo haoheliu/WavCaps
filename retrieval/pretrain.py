@@ -11,6 +11,7 @@ import torch
 import argparse
 import yaml
 import os
+import random
 
 os.environ["HF_HOME"] = "/mnt/bn/lqhaoheliu/home_cache/huggingface"
 os.environ["TORCH_HOME"] = "/mnt/bn/lqhaoheliu/home_cache/torch"
@@ -35,7 +36,19 @@ from tools.utils import (
 
 wandb.login(key = "f91003cb3a038eeab803a8224311a8ca7d47d2dd")
 
-def train(model, dataloader, optimizer, scheduler, device, epoch):
+def mask_words(text_list, mask_ratio=0.1):
+    masked_texts = []
+    
+    for text in text_list:
+        words = text.split()
+        num_words_to_mask = int(len(words) * mask_ratio)
+        words_to_mask_indices = random.sample(range(len(words)), num_words_to_mask)
+        masked_words = [word for i, word in enumerate(words) if i not in words_to_mask_indices]
+        masked_texts.append(' '.join(masked_words))
+    
+    return masked_texts
+
+def train(model, dataloader, optimizer, scheduler, device, epoch, args):
     model.train()
 
     epoch_loss = AverageMeter()
@@ -54,6 +67,9 @@ def train(model, dataloader, optimizer, scheduler, device, epoch):
 
         audio = audio.to(device, non_blocking=True)
         idx = idx.to(device, non_blocking=True)
+        
+        if args.mask_ratio > 1e-5:
+            text = mask_words(text, mask_ratio=args.mask_ratio)
 
         loss = model(audio, text, idx)
 
@@ -79,6 +95,8 @@ def main():
                         help="Setting files")
     parser.add_argument("-n", "--exp_name", default="exp_name", type=str,
                         help="name of this experiment.")
+    parser.add_argument("-m", "--mask_ratio", default=0.0, type=float,
+                        help="")
     args = parser.parse_args()
 
     exp_name = args.exp_name
@@ -177,7 +195,7 @@ def main():
     for epoch in range(start_epoch, max_epoch + 1):
         main_logger.info(f'Training for epoch [{epoch}]')
 
-        train_statics = train(model, dataloader, optimizer, scheduler, device, epoch)
+        train_statics = train(model, dataloader, optimizer, scheduler, device, epoch, args)
         loss = train_statics["loss"]
         elapsed_time = train_statics["time"]
         loss_stats.append(loss)

@@ -3,7 +3,7 @@
 # @Author  : Xinhao Mei @CVSSP, University of Surrey
 # @E-mail  : x.mei@surrey.ac.uk
 
-
+import os
 import json
 import torch
 import random
@@ -13,27 +13,30 @@ from data_handling.sampler import BySequenceLengthSampler, BySequenceBatchSample
 from data_handling.text_transform import text_preprocess
 import torch.nn.functional as F
 
+def read_list(fname):
+    result = []
+    with open(fname, "r") as f:
+        for each in f.readlines():
+            each = each.strip('\n')
+            result.append(each)
+    return result
 
 def _load_json_file(files, blacklist=None):
     json_data = []
     audio_id = 0
     if blacklist is not None:
-        with open(blacklist, 'r') as f:
-            blacklist = json.load(f)
+        blacklist = read_list(blacklist)
+    blacklisted_files = []
     for file in files:
         with open(file, "r") as f:
             json_obj = json.load(f)
             if json_obj["num_captions_per_audio"] == 1:
                 for item in json_obj["data"]:
-                    if "FreeSound" in file and blacklist is not None:
-                        if item["id"] in blacklist["FreeSound"]:
-                            continue
-                    # elif ("AudioSet" in file or "AudioCaps" in file) and blacklist is not None:
-                    else:
-                        # if item["id"] in blacklist["AudioSet"]:
-                        #     continue
-                        temp_dict = {"audio": item["audio"], "caption": item["caption"], "id": audio_id,
-                                    "duration": item["duration"]}
+                    if os.path.basename(item["audio"]).split('.')[0] in blacklist:
+                        blacklisted_files.append(item["audio"])
+                        continue
+                    temp_dict = {"audio": item["audio"], "caption": item["caption"], "id": audio_id,
+                                "duration": item["duration"]}
                     json_data.append(temp_dict)
                     audio_id += 1
             else:
@@ -46,6 +49,7 @@ def _load_json_file(files, blacklist=None):
                                      "duration": item["duration"]}
                         json_data.append(temp_dict)
                     audio_id += 1
+    print("Blacklisted",len(blacklisted_files))
     return json_data
 
 
@@ -117,24 +121,24 @@ def pretrain_dataloader(config,
                         num_tasks: int = 0,
                         global_rank: int = 0):
     dataset = AudioLanguagePretrainDataset(config["json_files"], config["audio_args"], config["blacklist"])
-    if bucket:
-        sampler = BySequenceLengthSampler(lengths=dataset.lengths,
-                                          bucket_boundaries=bucket_boundaries,
-                                          batch_size=config["data_args"]["batch_size"],
-                                          drop_last=True,
-                                          seed=config["seed"])
-        return DataLoader(dataset=dataset,
-                          batch_sampler=BySequenceBatchSampler(sampler, batch_size=config["data_args"]["batch_size"], drop_last=False),
-                          shuffle=False,
-                          num_workers=config["data_args"]["num_workers"],
-                          collate_fn=collate_fn)
-    elif is_distributed:
-        sampler = DistributedSampler(dataset,
-                                     num_replicas=num_tasks,
-                                     rank=global_rank,
-                                     shuffle=True)
-    else:
-        sampler = None
+    # if bucket:
+    #     sampler = BySequenceLengthSampler(lengths=dataset.lengths,
+    #                                       bucket_boundaries=bucket_boundaries,
+    #                                       batch_size=config["data_args"]["batch_size"],
+    #                                       drop_last=True,
+    #                                       seed=config["seed"])
+    #     return DataLoader(dataset=dataset,
+    #                       batch_sampler=BySequenceBatchSampler(sampler, batch_size=config["data_args"]["batch_size"], drop_last=False),
+    #                       shuffle=False,
+    #                       num_workers=config["data_args"]["num_workers"],
+    #                       collate_fn=collate_fn)
+    # elif is_distributed:
+    #     sampler = DistributedSampler(dataset,
+    #                                  num_replicas=num_tasks,
+    #                                  rank=global_rank,
+    #                                  shuffle=True)
+    # else:
+    sampler = None
 
     return DataLoader(
         dataset,

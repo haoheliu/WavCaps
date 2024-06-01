@@ -1,0 +1,1 @@
+{"text": ["The sound of the cow"], "tag": ["cow"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-16568-A-3.wav", "fold": 1, "target": 3, "category": "cow", "esc10": false, "src_file": 16568, "take": "A"}}

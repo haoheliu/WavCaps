@@ -1,0 +1,1 @@
+{"text": ["The sound of the cat"], "tag": ["cat"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-56380-A-5.wav", "fold": 1, "target": 5, "category": "cat", "esc10": false, "src_file": 56380, "take": "A"}}

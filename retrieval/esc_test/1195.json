@@ -1,0 +1,1 @@
+{"text": ["The sound of the sea waves"], "tag": ["sea waves"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-28135-B-11.wav", "fold": 1, "target": 11, "category": "sea waves", "esc10": true, "src_file": 28135, "take": "B"}}

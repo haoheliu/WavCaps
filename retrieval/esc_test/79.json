@@ -1,0 +1,1 @@
+{"text": ["The sound of the hen"], "tag": ["hen"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-18074-A-6.wav", "fold": 1, "target": 6, "category": "hen", "esc10": false, "src_file": 18074, "take": "A"}}

@@ -1,0 +1,1 @@
+{"text": ["The sound of the vacuum cleaner"], "tag": ["vacuum cleaner"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-19872-B-36.wav", "fold": 1, "target": 36, "category": "vacuum cleaner", "esc10": false, "src_file": 19872, "take": "B"}}

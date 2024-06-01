@@ -1,0 +1,1 @@
+{"text": ["The sound of the clock alarm"], "tag": ["clock alarm"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-72195-A-37.wav", "fold": 1, "target": 37, "category": "clock alarm", "esc10": false, "src_file": 72195, "take": "A"}}

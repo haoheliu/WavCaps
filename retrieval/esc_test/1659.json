@@ -1,0 +1,1 @@
+{"text": ["The sound of the toilet flush"], "tag": ["toilet flush"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-51170-A-18.wav", "fold": 1, "target": 18, "category": "toilet flush", "esc10": false, "src_file": 51170, "take": "A"}}

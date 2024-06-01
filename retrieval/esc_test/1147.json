@@ -1,0 +1,1 @@
+{"text": ["The sound of the car horn"], "tag": ["car horn"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-24074-A-43.wav", "fold": 1, "target": 43, "category": "car horn", "esc10": false, "src_file": 24074, "take": "A"}}

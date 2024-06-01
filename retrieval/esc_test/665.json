@@ -1,0 +1,1 @@
+{"text": ["The sound of the engine"], "tag": ["engine"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-50455-A-44.wav", "fold": 1, "target": 44, "category": "engine", "esc10": false, "src_file": 50455, "take": "A"}}

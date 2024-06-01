@@ -1,0 +1,1 @@
+{"text": ["The sound of the chirping birds"], "tag": ["chirping birds"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-100038-A-14.wav", "fold": 1, "target": 14, "category": "chirping birds", "esc10": false, "src_file": 100038, "take": "A"}}

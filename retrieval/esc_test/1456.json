@@ -1,0 +1,1 @@
+{"text": ["The sound of the crow"], "tag": ["crow"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-96950-A-9.wav", "fold": 1, "target": 9, "category": "crow", "esc10": false, "src_file": 96950, "take": "A"}}

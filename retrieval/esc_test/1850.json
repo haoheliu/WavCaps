@@ -1,0 +1,1 @@
+{"text": ["The sound of the dog"], "tag": ["dog"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-30226-A-0.wav", "fold": 1, "target": 0, "category": "dog", "esc10": true, "src_file": 30226, "take": "A"}}

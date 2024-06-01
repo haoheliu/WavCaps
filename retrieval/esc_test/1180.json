@@ -1,0 +1,1 @@
+{"text": ["The sound of the siren"], "tag": ["siren"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-76831-A-42.wav", "fold": 1, "target": 42, "category": "siren", "esc10": false, "src_file": 76831, "take": "A"}}

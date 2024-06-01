@@ -1,0 +1,1 @@
+{"text": ["The sound of the wind"], "tag": ["wind"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-29532-A-16.wav", "fold": 1, "target": 16, "category": "wind", "esc10": false, "src_file": 29532, "take": "A"}}

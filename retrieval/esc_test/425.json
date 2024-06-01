@@ -1,0 +1,1 @@
+{"text": ["The sound of the airplane"], "tag": ["airplane"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-11687-A-47.wav", "fold": 1, "target": 47, "category": "airplane", "esc10": false, "src_file": 11687, "take": "A"}}

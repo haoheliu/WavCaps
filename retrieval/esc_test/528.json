@@ -1,0 +1,1 @@
+{"text": ["The sound of the chainsaw"], "tag": ["chainsaw"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-19898-B-41.wav", "fold": 1, "target": 41, "category": "chainsaw", "esc10": true, "src_file": 19898, "take": "B"}}

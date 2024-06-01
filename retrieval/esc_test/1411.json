@@ -1,0 +1,1 @@
+{"text": ["The sound of the clapping"], "tag": ["clapping"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-110537-A-22.wav", "fold": 1, "target": 22, "category": "clapping", "esc10": false, "src_file": 110537, "take": "A"}}

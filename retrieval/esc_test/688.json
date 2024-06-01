@@ -1,0 +1,1 @@
+{"text": ["The sound of the crickets"], "tag": ["crickets"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-59102-A-13.wav", "fold": 1, "target": 13, "category": "crickets", "esc10": false, "src_file": 59102, "take": "A"}}

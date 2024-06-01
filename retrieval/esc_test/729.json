@@ -1,0 +1,1 @@
+{"text": ["The sound of the sneezing"], "tag": ["sneezing"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-26143-A-21.wav", "fold": 1, "target": 21, "category": "sneezing", "esc10": true, "src_file": 26143, "take": "A"}}

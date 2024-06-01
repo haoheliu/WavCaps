@@ -1,0 +1,1 @@
+{"text": ["The sound of the train"], "tag": ["train"], "original_data": {"title": "ESC-50", "desciption": "ESC-50: Dataset for Environmental Sound Classification", "license": "Creative Commons Attribution Non-Commercial license", "fname": "1-54065-A-45.wav", "fold": 1, "target": 45, "category": "train", "esc10": false, "src_file": 54065, "take": "A"}}
